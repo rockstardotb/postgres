@@ -1,0 +1,67 @@
+/* For optimizer */
+
+vacuum analyze;
+set enable_seqscan=off;
+
+/* Query 1: w/out index: 17.447 ms; w/index: 17.340 ms*/
+
+/* List property types, count them, and give average prices for each (2 decimal places).
+Only include property_type which have average price < $300. */
+
+explain analyze Select property_type, count(*), round(avg(price), 2)
+From listing 
+Group by property_type
+Having avg(price) < 300
+Order by avg(price) desc;
+
+/* Query 2: w/out index: 15.843 ms; w/index: 3.392 ms */
+/* List ids, $130 < price > $150, and count where gym or pool or both are in the amenities. */
+
+explain analyze Select id, price, count(*)
+From listing l full join amenity a on l.id=a.listing_id
+Where amenity_name = 'Gym' or amenity_name = 'Pool'
+Group by id
+Having price > 130 and price < 150
+Order by price asc;   
+
+/* Query 3: w/out index: 10.936 ms; w/index: 2.590 ms */
+/* List ids, give $100 <= price >= $300 where they have bedrooms >= 3 and beds >= 5, so that my family can have enough bedrooms and have their own beds */
+
+explain analyze Select id, date, l.price, bedrooms, beds
+From listing l left join calendar c on l.id= c.listing_id
+Where l.bedrooms >= '3' and l.beds >= '5' and date = '2018-02-24'
+Group by id, date, l.price, l.bedrooms, l.beds
+Having l.price >= 100 and l.price <= 300
+Order by l.price asc;
+
+/* Query 4: w/out index: 24.191 ms; w/index: 2.009 ms */
+/* List the number of superhosts by neighborhood in Austin, TX */
+
+explain analyze Select neighborhood, count(superhost)
+From host
+where superhost='t' and city='Austin' and neighborhood is not null
+Group by neighborhood
+Order by count(superhost) desc
+limit 10;
+
+/* Query 5: w/out index: 113.266 ms; w/index: 99.809 ms */
+/* List ids by number of reviews and review rating */
+
+explain analyze Select l.id, l.review_scores_rating, count(r.id)
+from listing l join review r on l.id=r.listing_id
+where l.review_scores_rating is not null
+group by l.id
+Having count(r.id)>200
+order by l.review_scores_rating desc, count(r.id) desc
+limit 10;
+
+/* Query 6: w/out index: 2685.909 ms; w/index: 2605.087 ms */
+/* List the number of available places per neighborhood by date  */
+
+set enable_seqscan=on;
+explain analyze Select l.neighborhood, c.date, count(c.*)
+From listing l join calendar c on l.id=c.listing_id
+group by l.neighborhood, c.date
+order by c.date
+limit 10;
+enable_seqscan=off;

@@ -1,0 +1,56 @@
+/*
+1.
+The first data studio chart shows the crossover_pt for each of the three cities as a function of date, broken down by the number of bedrooms.
+
+For Austin, the number of days a host would need to rent out their place to earn as much as the median long-term rental has increased steadily as a function
+of date for almost all numbers of bedrooms. Notably, the crossover_pt for listings offering four bedrooms has stayed relatively constant over time. 
+
+For Nashville, the number of days a host would need to rent out their place to earn as much as the median long-term rental has decreased slightly over time,
+although the decrease is negligible.
+
+For Portland, the number of days a host would need to rent out their place to earn as much as the median long-term rental has stayed constant over time. 
+
+Possible causes for the differences in crossover_pt for each city include, but are not limited to, the local housing market and population growth. Texas is
+significant because of the well-document surge in population caused by an increase in STEM jobs, which has resulted in a large number of California residents 
+moving to Texas. One might consider the size of each city and the effect that it might have on the crossover_pt, however, it is worth noting that although Austin
+is much larger than Nashville and Portland, and it experienced an increase, Nashville is larger than Portland, yet it experienced a decrease, while Portland
+remained constant. Thus, we consider the size of the city to be arbitrary when comparing the crossover_pt for each city. 
+
+2.
+The second data studio chart shows the median price per day per month for each of the three cities as a function of date, broken down by the number of bedrooms. 
+The Airbnb relation is the source of the data.
+
+For Austin, the median price per day per month is the highest ($250-$270) among the three cities overall. 
+The median price per day per month for 5 or more bedrooms is always the highest 
+up until 2017 at which point the median price is approximately equal across all bedroom numbers.
+
+For Nashville, the median price per day per month is normally around $210-$240 except for June 2015. 
+The cause is unknown, but the median price per day per month for three and four bedrooms reached $280 in June. 
+The median price per day per month for 5 or more bedrooms is the highest from July 2015 to Oct.2016.
+
+For Portland, the median price per day per month is the lowest among the three cities (around $150) throughout the past two years.
+
+Comparing the size of the three cities, in general, and the median price per day per month, 
+the median price per day per month for Austin is the highest and for Portland it is the lowest. 
+It seems logical, when referencing the data, that the the median price per day per month 
+is proportional to the size of the cities.
+
+
+3. 
+The third data studio chart shows the zillow_price_month for each of the three cities as a function of date, broken down by the number of bedrooms. 
+
+For Austin, the zillow_price_month is, in most cases, less than 1.5K, which is lower than Nashville and Portland. 
+It is worth noting that the zillow_price_month for 5 or more bedrooms is usually higher than listings with fewer bedrooms 
+while the zillow_price_month for one to four bedroom listings are approximately equal to one another.
+
+For Nashville, the zillow_price_month, except for the fluctuation in June 2015, is around 1.5K. 
+Similar to Austin, the zillow_price_month for 5 bedrooms or more are higher than listings with fewer bedrooms. 
+The price for listings with one to four bedrooms are approximately equal to one another.
+
+For Portland, overall, the zillow_price_month is the highest among the three cities, but, unlike the other two cities, the zillow_price_month for 5 
+or more bedrooms is always the lower than listings with fewer bedrooms. The zillow_price_month has remained relatively  constant throughout the past two years. 
+
+Comparing the size of the three cities, in general, and the zillow_price_month, 
+the zillow_price_month for Portland is the highest and for Austin it is the lowest. 
+It seems logical, when referencing the data, that the zillow_price_month is inversely proportional to the size of the cities.
+*/
